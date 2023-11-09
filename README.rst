@@ -1,12 +1,10 @@
 FastAPI + SQLAlchemy + Dependency Injector Template
 ==================================================
 
-This is a `FastAPI <https://fastapi.tiangolo.com/>`_ +
-`SQLAlchemy <https://www.sqlalchemy.org/>`_ +
-`Dependency Injector <https://python-dependency-injector.ets-labs.org/>`_ example application.
+This is a Template of Spring Like package structure from Dependency Injector Examples.
 
-Thanks to `@ShvetsovYura <https://github.com/ShvetsovYura>`_ for providing initial example:
-`FastAPI_DI_SqlAlchemy <https://github.com/ShvetsovYura/FastAPI_DI_SqlAlchemy>`_.
+from : `Dependency Injector <https://github.com/ets-labs/python-dependency-injector>`_ 's
+ `FastAPI + SQLAlchemy + Dependency Injector Example <https://github.com/ets-labs/python-dependency-injector/tree/master/examples/miniapps/fastapi-sqlalchemy>
 
 Run
 ---
@@ -67,30 +65,5 @@ To run the tests do:
 
 .. code-block:: bash
 
-   docker-compose run --rm webapp py.test webapp/tests.py --cov=webapp
+   docker-compose run --rm webapp py.test webapp/test/user.py --cov=webapp
 
-The output should be something like:
-
-.. code-block::
-
-   platform linux -- Python 3.10.0, pytest-6.2.5, py-1.10.0, pluggy-1.0.0
-   rootdir: /code
-   plugins: cov-3.0.0
-   collected 7 items
-
-   webapp/tests.py .......                                         [100%]
-
-   ---------- coverage: platform linux, python 3.10.0-final-0 ----------
-   Name                     Stmts   Miss  Cover
-   --------------------------------------------
-   webapp/__init__.py           0      0   100%
-   webapp/application.py       12      0   100%
-   webapp/containers.py        10      0   100%
-   webapp/database.py          24      8    67%
-   webapp/endpoints.py         32      0   100%
-   webapp/models.py            10      1    90%
-   webapp/repositories.py      36     20    44%
-   webapp/services.py          16      0   100%
-   webapp/tests.py             59      0   100%
-   --------------------------------------------
-   TOTAL                      199     29    85%
