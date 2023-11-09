@@ -4,7 +4,8 @@ FastAPI + SQLAlchemy + Dependency Injector Template
 This is a Template of Spring Like package structure from Dependency Injector Examples.
 
 from : `Dependency Injector <https://github.com/ets-labs/python-dependency-injector>`_ 's
- `FastAPI + SQLAlchemy + Dependency Injector Example <https://github.com/ets-labs/python-dependency-injector/tree/master/examples/miniapps/fastapi-sqlalchemy>_`
+
+`FastAPI + SQLAlchemy + Dependency Injector Example <https://github.com/ets-labs/python-dependency-injector/tree/master/examples/miniapps/fastapi-sqlalchemy>`_
 
 Run
 ---
