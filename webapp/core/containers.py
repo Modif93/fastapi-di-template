@@ -2,6 +2,8 @@
 
 from dependency_injector import containers, providers
 
+from .abstract import service,repository
+
 from .database import Database
 from ..repository.user import UserRepository
 from ..service.user import UserService
@@ -14,12 +16,6 @@ class Container(containers.DeclarativeContainer):
 
     db = providers.Singleton(Database, db_url=config.db.url)
 
-    user_repository = providers.Factory(
-        UserRepository,
-        session_factory=db.provided.session,
-    )
-
-    user_service = providers.Factory(
-        UserService,
-        user_repository=user_repository,
-    )
+    user_repository = repository(UserRepository,db.provided.session)
+    
+    user_service = service(UserService,user_repository)
