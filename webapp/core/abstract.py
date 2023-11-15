@@ -9,13 +9,14 @@ from sqlalchemy.orm import Session
 class Repository(ABC):
     def __init__(self, session_factory: Callable[..., AbstractContextManager[Session]]) -> None:
         self.session_factory = session_factory
-        
-    @abstractmethod
+
     def get_all(self):
         pass
 
-    @abstractmethod
-    def get_by_id(self):
+    def get_by_id(self, _id):
+        pass
+        
+    def delete_by_id(self, _id):
         pass
     
 class Service(ABC):
