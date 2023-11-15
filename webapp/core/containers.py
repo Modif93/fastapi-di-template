@@ -3,8 +3,8 @@
 from dependency_injector import containers, providers
 
 from .abstract import service,repository
-
 from .database import Database
+
 from ..repository.user import UserRepository
 from ..service.user import UserService
 
