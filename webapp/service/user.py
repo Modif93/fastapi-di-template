@@ -1,7 +1,7 @@
 """Services module."""
 
 from uuid import uuid4
-from typing import Annotated, Iterator
+from typing import Annotated, Iterator, Sequence, Type
 
 from ..core.abstract import Service
 
@@ -10,13 +10,12 @@ from ..model.user import User
 
 
 class UserService(Service):
-    _repository: Annotated[UserRepository,"user_repository"]
-    
-    
-    def get_users(self) -> Iterator[User]:
+    _repository: Annotated[UserRepository, "user_repository"]
+
+    def get_users(self) -> Sequence[User]:
         return self._repository.get_all()
 
-    def get_user_by_id(self, user_id: int) -> User:
+    def get_user_by_id(self, user_id: int) -> Type[User]:
         return self._repository.get_by_id(user_id)
 
     def create_user(self) -> User:
