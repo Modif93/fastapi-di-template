@@ -7,3 +7,5 @@ pytest
 requests
 pytest-cov
 gunicorn
+python-multipart
+pydantic
