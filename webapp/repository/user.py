@@ -1,9 +1,8 @@
 """Repositories module."""
 
-from contextlib import AbstractContextManager
-from typing import Callable, Iterator
+from typing import Sequence, Type
 
-from sqlalchemy.orm import Session
+from sqlalchemy import select
 
 from ..core.abstract import Repository
 from ..exception.entity import NotFoundError
@@ -12,16 +11,17 @@ from ..model.user import User
 
 class UserRepository(Repository):
 
-    def get_all(self) -> Iterator[User]:
+    def get_all(self) -> Sequence[User]:
         with self.session_factory() as session:
-            return session.query(User).all()
+            return session.scalars(select(User)).all()
 
-    def get_by_id(self, _id: int) -> User:
+    def get_by_id(self, _id: int) -> Type[User]:
         with self.session_factory() as session:
-            user = session.query(User).filter_by(id=_id).first()
-            if not user:
+            entity = session.get(User, _id)
+            if not entity:
                 raise UserNotFoundError(_id)
-            return user
+
+            return entity
 
     def add(self, email: str, password: str, is_active: bool = True) -> User:
         with self.session_factory() as session:
@@ -33,12 +33,12 @@ class UserRepository(Repository):
 
     def delete_by_id(self, _id: int) -> None:
         with self.session_factory() as session:
-            entity: User = session.query(User).filter_by(id=_id).first()
+            entity = session.get(User, _id)
             if not entity:
                 raise UserNotFoundError(_id)
             session.delete(entity)
             session.commit()
 
-class UserNotFoundError(NotFoundError):
 
+class UserNotFoundError(NotFoundError):
     entity_name: str = "User"
